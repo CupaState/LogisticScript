@@ -26,29 +26,29 @@ file.writeFileSync(file_name,
                     }
                 });
 
-let stocks_arr = text.stock.stocks[34];
+let stocks_obj = text.stock.stocks[34];
 
 file.appendFileSync(file_name, "\nМагазины, где есть товары в наличии:\n");
 
-let num = 1;
+let paragraph = 1;
 
-for(let key in stocks_arr)
+for(let key in stocks_obj)
 {
-    if(stocks_arr[key] != '0')
+    if(stocks_obj[key] != '0')
     {
-        file.appendFileSync(file_name, num + ') ' + stocks_arr[key] + '\n', (err)=>{
+        file.appendFileSync(file_name, paragraph + ') ' + stocks_obj[key] + '\n', (err)=>{
             if(err)
             {
                 throw err;
             }
         });
-        num++;
+        paragraph++;
     }
 }
 
 
 file.appendFileSync(file_name, "\nГде больше всего товара:\n");
 
-let max = getMaxOfArray(stocks_arr);
+let max = getMaxOfArray(stocks_obj);
 
 file.appendFileSync(file_name, "Магазин: " + max.key + "\tОстаток: " + max.max + '\n');
